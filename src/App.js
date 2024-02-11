@@ -2,22 +2,31 @@ import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { nanoid } from 'nanoid'
 import './index.css'
-import {Modal} from '././components/Modal'
+import { Modal } from '././components/Modal'
+import Clock from '././components/Clock'
+import Tabs from '././components/Tabs';
+import tabs from './tabs.json';
+import videos from './videos.json';
+import { VideoList } from './components/VideoList';
+import Player from './components/Player';
+import { Reader } from './components/Reader';
+import publications from './publications.json';
 
 class App extends Component {
 
   state = {
     todos: [],
     message: '',
-    showModal:false,
+    showModal: false,
+    selectedVideo:null,
   };
   
-  toggleModal = () => {
-    console.log('click')
-    this.setState(prevState => ({
-    showModal: !prevState.showModal
-  }))
-  }
+  // toggleModal = () => {
+  //   console.log('click')
+  //   this.setState(prevState => ({
+  //   showModal: !prevState.showModal
+  // }))
+  // }
 //   componentDidMount() {
 
 //     console.log('mount')
@@ -81,11 +90,28 @@ class App extends Component {
 //     console.log(currentTarget)
 // }
 
+  // selectVideo = link => {
+  //   this.setState({selectedVideo:link})
+  // }
 
   render() {
-    const modalRoot = document.querySelector('#modalRoot')
     return (
       <>
+        
+        <Reader items={publications} />
+        {/* <div style={{padding:24}}>
+          <h1> Selected video : {this.state.selectedVideo}</h1>
+          <VideoList videos={videos} onSelect={this.selectVideo} />
+          <Player url={this.state.selectedVideo} />
+        </div> */}
+
+        {/* <Tabs items={tabs} /> */}
+        {/* <button type='button' onClick={this.toggleModal}>
+          Open Clock
+        </button>
+
+        {this.state.showModal && <Clock />} */}
+       
         {/* <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} name='input' value={this.state.message} />
           <button type="submit" >
@@ -106,17 +132,17 @@ class App extends Component {
   
   )}
         </div> */}
-
+{/* 
         <button type='button' onClick={this.toggleModal}>
           Open Modal
         </button>
         
         {this.state.showModal && (<Modal onClick={this.toggleModal}>
 
-          <button type='button'> Close Modal</button>
+          <button type='button' onClick={this.toggleModal}> Close Modal</button>
         </Modal>
           
-        )}
+        )} */}
  
       </>
     );

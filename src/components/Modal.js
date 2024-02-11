@@ -15,18 +15,23 @@ export class Modal extends Component {
 
     componentWillUnmount() {
         console.log('unmount')
-        // window.removeEventListener('keydown', this.handleEscModalClose)
+        window.removeEventListener('keydown', this.handleEscModalClose)
     }
 
 
     handleEscModalClose = e => {
-        console.log('yes')
         if (e.code === 'Escape') {
             this.props.onClick();
+
         }
     }
 
-
+    handleBackdropClick = e => {
+        if (e.target === e.currentTarget) {
+            console.log('click')
+            this.props.onClick();
+        }
+    }
 
 
     render() {
@@ -34,7 +39,7 @@ export class Modal extends Component {
         const { children } = this.props;
         return (
 
-            <div className='backdrop'>
+            <div className='backdrop' onClick={this.handleBackdropClick}>
                 <div className='modal'> </div>
                 {children}
             </div>
